@@ -1,6 +1,12 @@
 {
-    "name": "icloud-api",
-    "private": true,
+    "name": "@samuelthomas2774/icloud-api",
+    "version": "0.1.0",
+    "homepage": "https://gitlab.fancy.org.uk/samuel/icloud-api",
+    "bugs": "https://gitlab.fancy.org.uk/samuel/icloud-api/issues",
+    "author": {
+        "name": "Samuel Elliott",
+        "url": "https://samuelelliott.ml"
+    },
     "main": "dist/index.js",
     "files": [
         "dist"
@@ -22,5 +28,8 @@
     "scripts": {
         "install": "touch cookies.json",
         "build": "gulp build"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }
