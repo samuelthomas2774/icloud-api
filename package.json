@@ -2,6 +2,9 @@
     "name": "icloud-api",
     "private": true,
     "main": "dist/index.js",
+    "files": [
+        "dist",
+    ],
     "dependencies": {
         "request": "^2.88.0",
         "request-promise-native": "^1.0.5",
@@ -17,6 +20,7 @@
         "pump": "^3.0.0"
     },
     "scripts": {
-        "install": "touch cookies.json"
+        "install": "touch cookies.json",
+        "build": "gulp build"
     }
 }
