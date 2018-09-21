@@ -3,7 +3,7 @@
     "private": true,
     "main": "dist/index.js",
     "files": [
-        "dist",
+        "dist"
     ],
     "dependencies": {
         "request": "^2.88.0",
