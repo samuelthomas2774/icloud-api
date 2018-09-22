@@ -3,6 +3,10 @@
     "version": "0.1.1",
     "homepage": "https://gitlab.fancy.org.uk/samuel/icloud-api",
     "bugs": "https://gitlab.fancy.org.uk/samuel/icloud-api/issues",
+    "repository": {
+        "type": "git",
+        "url": "https://gitlab.fancy.org.uk/samuel/icloud-api"
+    },
     "author": {
         "name": "Samuel Elliott",
         "url": "https://samuelelliott.ml"

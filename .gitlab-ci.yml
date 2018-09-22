@@ -18,6 +18,12 @@ build:
         paths:
             - dist/
 
+lint:
+    stage: test
+    script:
+        - npm install
+        - npm run lint
+
 publish:
     stage: deploy
     script:
