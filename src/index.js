@@ -3,7 +3,7 @@ import path from 'path';
 import request from 'request';
 import requestPromise from 'request-promise-native';
 
-import { AccountService, UbiquityService, DriveService } from './services';
+import {AccountService, UbiquityService, DriveService} from './services';
 
 import FileCookieStore from 'tough-cookie-filestore';
 
@@ -26,9 +26,8 @@ export class iCloudSession {
             headers: {
                 'Origin': this.service.home_endpoint,
                 'Referer': this.service.home_endpoint + '/',
-                'User-Agent': 'Opera/9.52 (X11; Linux i686; U; en)'
+                'User-Agent': 'Opera/9.52 (X11; Linux i686; U; en)',
             },
-            strictSSL: false
         });
     }
 
@@ -49,7 +48,6 @@ export default class iCloudService {
 
         this.data = {};
         this.client_id = '0000-0000-0000-0000';
-        this.user = {apple_id, password};
 
         this.home_endpoint = 'https://www.icloud.com';
         this.setup_endpoint = 'https://setup.icloud.com/setup/ws/1';
@@ -65,7 +63,7 @@ export default class iCloudService {
             clientMasteringNumber: '17DHotfix5',
             ckjsBuildVersion: '17DProjectDev77',
             ckjsVersion: '2.0.5',
-            clientId: this.client_id
+            clientId: this.client_id,
         };
     }
 
@@ -81,7 +79,7 @@ export default class iCloudService {
             password: this.password,
 
             // We authenticate every time so remember me is not needed
-            extended_login: false
+            extended_login: false,
         };
 
         const response = await this.session.post(this.base_login_url, this.qsparams, data);
@@ -112,7 +110,7 @@ export default class iCloudService {
     /**
      * Returns devices trusted for two step authentication.
      *
-     * @return Promise
+     * @return {Promise}
      */
     getTrustedDevices() {
         return this.session.get(this.setup_endpoint + '/listDevices', this.qsparams);
@@ -121,7 +119,8 @@ export default class iCloudService {
     /**
      * Requests that a verification code is sent to the given device.
      *
-     * @return Promise
+     * @param {object} device
+     * @return {Promise}
      */
     sendVerificationCode(device) {
         return this.session.post(this.setup_endpoint + '/sendVerificationCode', this.qsparams, device);
@@ -130,12 +129,14 @@ export default class iCloudService {
     /**
      * Verifies a verification code received on a trusted device.
      *
-     * @return Promise
+     * @param {object} device
+     * @param {string} code
+     * @return {Promise}
      */
     validateVerificationCode(device, code) {
         return this.session.post(this.setup_endpoint + '/validateVerificationCode', this.qsparams, Object.assign({
             verificationCode: code,
-            trustBrowser: true
+            trustBrowser: true,
         }, device));
 
         // Later make this reauthenticate
@@ -146,11 +147,8 @@ export default class iCloudService {
     }
 
     get ubiquity() {
-        return this._ubiquity || (this._ubiquity = UbiquityService.getUbiquityService(this, this.webservices.ubiquity.url));
-    }
-
-    get files() {
-        return this.ubiquity;
+        return this._ubiquity || (this._ubiquity =
+            UbiquityService.getUbiquityService(this, this.webservices.ubiquity.url));
     }
 
     get drive() {

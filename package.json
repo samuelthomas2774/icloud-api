@@ -27,7 +27,8 @@
     },
     "scripts": {
         "install": "touch cookies.json",
-        "build": "gulp build"
+        "build": "gulp build",
+        "lint": "eslint src"
     },
     "publishConfig": {
         "access": "public"

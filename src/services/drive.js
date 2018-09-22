@@ -10,9 +10,15 @@ export default class DriveService {
         return new DriveService(service_root, service.session, service.qsparams);
     }
 
-    static get Item() { return Item; }
-    static get File() { return File; }
-    static get Directory() { return Directory; }
+    static get Item() {
+        return Item;
+    }
+    static get File() {
+        return File;
+    }
+    static get Directory() {
+        return Directory;
+    }
 
     getNodeUrl(id, variant = 'item') {
         return `${this.service_root}/ws/${this.qsparams.dsid}/${variant}/${id}`;
@@ -33,8 +39,8 @@ export default class DriveService {
             items: ids.map(id => ({
                 drivewsid: id,
                 partialData: false,
-                includeHierarchy: true
-            }))
+                includeHierarchy: true,
+            })),
         });
 
         return response.items.map(item => Item.createItem(this, item));
@@ -46,10 +52,11 @@ export default class DriveService {
     }
 
     async getItemsInFolders(ids) {
+        // eslint-disable-next-line max-len
         const response = await this.session.post(this.service_root + '/retrieveItemDetailsInFolders', this.qsparams, ids.map(id => ({
             drivewsid: id,
             partialData: true,
-            includeHierarchy: true
+            includeHierarchy: true,
         })));
 
         return response.map(item => Item.createItem(this, item));
@@ -79,7 +86,7 @@ export default class DriveService {
 
     getTrashDetails() {
         return this.session.post(this.service_root + '/retrieveTrashDetails', this.qsparams, {
-            includeShallowCount: true
+            includeShallowCount: true,
         });
     }
 
@@ -171,7 +178,8 @@ class Directory extends Item {
     }
 
     get folder() {
-        return this._folder || (this._folder = this.data.items ? this : this.connection.getItemsInFolder(this.drivewsid));
+        return this._folder || (this._folder =
+            this.data.items ? this : this.connection.getItemsInFolder(this.drivewsid));
     }
 
     get parent_id() {

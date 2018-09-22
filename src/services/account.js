@@ -22,11 +22,9 @@ export default class AccountService {
     }
 }
 
+// eslint-disable-next-line no-unused-vars
 class AccountDevice {
     constructor(device_info) {
         this.device_info = device_info;
     }
-
-
 }
-
