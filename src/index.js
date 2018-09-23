@@ -72,7 +72,7 @@ export default class iCloudService {
      * subsequent logins will not cause additional emails from Apple.
      */
     async authenticate() {
-        console.log('Authenticating as', this.user.apple_id);
+        console.log('Authenticating as', this.apple_id);
 
         const data = {
             apple_id: this.apple_id,
