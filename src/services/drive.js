@@ -73,6 +73,8 @@ export default class DriveService {
     }
 
     async getZoneRoot(id, name = 'root') {
+        if (id === 'com.apple.CloudDocs') return this[id];
+
         const libraries = await this.libraries;
         const library = libraries.find(l => l.zone === id);
         if (library) return library;
@@ -81,7 +83,7 @@ export default class DriveService {
     }
 
     get 'com.apple.CloudDocs'() {
-        return this._root || (this._root = this.getZoneRoot('com.apple.CloudDocs'));
+        return this._root || (this._root = this.getItemDetails('FOLDER::com.apple.CloudDocs::root'));
     }
 
     getTrashDetails() {
