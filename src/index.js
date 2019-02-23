@@ -8,7 +8,7 @@ import {AccountService, UbiquityService, DriveService} from './services';
 import FileCookieStore from 'tough-cookie-filestore';
 
 // NOTE - currently the 'cookies.json' file must already exist!
-const cookies = request.jar(new FileCookieStore(path.resolve(__dirname, '..', 'cookies.json')));
+const cookies = request.jar(new FileCookieStore(path.resolve(__dirname, '..', 'data', 'cookies.json')));
 
 export class iCloudSession {
     constructor(service) {
