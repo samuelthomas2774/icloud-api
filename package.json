@@ -30,7 +30,7 @@
         "pump": "^3.0.0"
     },
     "scripts": {
-        "install": "touch cookies.json",
+        "install": "mkdir -p data && touch data/cookies.json",
         "build": "gulp build",
         "lint": "eslint src"
     },

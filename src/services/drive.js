@@ -1,13 +1,14 @@
 
 export default class DriveService {
-    constructor(service_root, session, qsparams) {
+    constructor(service_root, doc_service_root, session, qsparams) {
         this.session = session;
         this.qsparams = qsparams;
         this.service_root = service_root;
+        this.doc_service_root = doc_service_root;
     }
 
-    static getDriveService(service, service_root) {
-        return new DriveService(service_root, service.session, service.qsparams);
+    static getDriveService(service, service_root, doc_service_root) {
+        return new DriveService(service_root, doc_service_root, service.session, service.qsparams);
     }
 
     static get Item() {
@@ -94,6 +95,12 @@ export default class DriveService {
 
     get trash() {
         return this.getItemDetails('TRASH_ROOT');
+    }
+
+    async getDownloadLink(zone, docwsid) {
+        return this.session.get(this.doc_service_root + '/ws/' + zone + '/download/by_id', Object.assign({
+            document_id: docwsid,
+        }, this.qsparams));
     }
 }
 
@@ -281,6 +288,10 @@ class File extends Item {
 
     get date_accessed() {
         return new Date(this.data.lastOpenTime);
+    }
+
+    getDownloadLink() {
+        return this.connection.getDownloadLink(this.zone, this.docwsid);
     }
 }
 

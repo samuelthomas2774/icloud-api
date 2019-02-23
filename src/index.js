@@ -158,7 +158,7 @@ export default class iCloudService {
     }
 
     get drive() {
-        return this._drive || (this._drive = DriveService.getDriveService(this, this.webservices.drivews.url));
+        return this._drive || (this._drive = DriveService.getDriveService(this, this.webservices.drivews.url, this.webservices.docws.url));
     }
 
     /**
